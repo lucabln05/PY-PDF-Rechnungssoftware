@@ -1,24 +1,23 @@
+def load_default_company():
+    default_config = open("Config/default_company.txt", "r")
+    default_config = default_config.read()
+    default_name, default_street, default_city = default_config.splitlines()
 
-#Company data
-def company_name():
-    company_name.x = "Fiktions GmbH"
 
-def company_street():
-    company_street.x = "Weberstrasse 15"
+    load_default_company.name = default_name        
 
-def company_city():
-    company_city.x = "87236 Erbedingen"
+    load_default_company.street = default_street
+
+    load_default_company.city = default_city
+
 
 
 # recipient company data
-def recipient_company_name():
-    recipient_company_name.x = "Translotico GmbH"
+def recipient_company():
+    recipient_company.company_name = "Translotico GmbH"
 
-def recipient_name():
-    recipient_name.x = "Frau Bergmann"
+    recipient_company.name = "Frau Bergmann"
 
-def recipient_street():
-    recipient_street.x = "Hauptstrasse 1"
+    recipient_company.street = "Hauptstrasse 1"
 
-def recipient_city():
-    recipient_city.x = "82377 Murnau"
+    recipient_company.city = "82377 Murnau"

@@ -1,14 +1,11 @@
 #https://www.youtube.com/watch?v=q70xzDG6nls
 from fpdf import FPDF   # import FPDF module from fpdf library
-from user_input import company_name, company_street, company_city, recipient_company_name, recipient_name, recipient_street, recipient_city
+from user_input import load_default_company, recipient_company
+from datetime import date
 
-company_name()
-company_street()
-company_city()
-recipient_company_name()
-recipient_name()
-recipient_street()
-recipient_city()
+
+load_default_company()
+recipient_company()
 
 
 class PDF(FPDF):        # create a class PDF which inherits from FPDF
@@ -17,19 +14,19 @@ class PDF(FPDF):        # create a class PDF which inherits from FPDF
 
         self.set_font('helvetica', '', 21)     # set the font, style and size
         self.cell(80)   # create a cell
-        self.cell(0, 14, company_name.x, 'C')   # add a title to the cell
+        self.cell(0, 14, load_default_company.name, 'C')   # add a title to the cell
         self.ln(20)     # move the cursor to the next line
 
         self.set_font('helvetica', '', 10)   # set the font, style and size
         self.set_text_color(80,80,80)  # set the text color to gray
-        self.cell(10, 10, f'{company_name.x} -- {company_street.x} -- {company_city.x }', ln=True)  # add a cell with a company address, name and street
+        self.cell(10, 10, f'{load_default_company.name} -- {load_default_company.street} -- {load_default_company.city }', ln=True)  # add a cell with a company address, name and street
 
         self.set_font('helvetica', '', 11)   # set the font, style and size
         self.set_text_color(0,0,0)  # set the text color to black
-        self.cell(10, 5, f'{recipient_company_name.x}', ln=True)  # company name
-        self.cell(10, 5, f'{recipient_name.x}', ln=True)  # person name
-        self.cell(10, 5, f'{recipient_street.x}', ln=True)  # street name
-        self.cell(10, 5, f'{recipient_city.x}', ln=True)  # zip code and city
+        self.cell(10, 5, f'{recipient_company.company_name}', ln=True)  # company name
+        self.cell(10, 5, f'{recipient_company.name}', ln=True)  # person name
+        self.cell(10, 5, f'{recipient_company.street}', ln=True)  # street name
+        self.cell(10, 5, f'{recipient_company.city}', ln=True)  # zip code and city
         self.ln(20)     # move the cursor to the next line
         
         self.set_font('helvetica', '', 8)   # set the font, style and size
@@ -126,9 +123,9 @@ class PDF(FPDF):        # create a class PDF which inherits from FPDF
         self.set_y(-15)     # set the cursor to the bottom of the page
         self.set_font('helvetica', '', 8)   # set the font, style and size
         self.set_text_color(80,80,80)  # set the text color to blue
-        self.cell(10, 3.5, 'Firma GmbH', ln=True)  # add a cell with a company address, name and street
-        self.cell(10, 3.5, company_street.x, ln=True)  # add a cell with a company address, name and street
-        self.cell(10, 3.5, '87236 Erbedingen', ln=True)  # add a cell with a company address, name and street
+        self.cell(10, 3.5, load_default_company.name, ln=True)  # add a cell with a company address, name and street
+        self.cell(10, 3.5, load_default_company.street, ln=True)  # add a cell with a company address, name and street
+        self.cell(10, 3.5, load_default_company.city, ln=True)  # add a cell with a company address, name and street
 
     
 
@@ -146,8 +143,9 @@ pdf = PDF('P','mm', 'A4')  # P = Portrait, mm = millimeter, A4 = size of the pag
 
 
 #Add a page
-pdf.add_page()
+pdf.add_page() 
 
 # save the pdf with name .pdf
-pdf.output('tuto1.pdf', 'F')  # F = save the file in the current directory
+pdf.output(f'{date.today()}{recipient_company.company_name}.pdf', 'F')  # F = save the file in the current directory
 
+today = date.today()
