@@ -106,8 +106,8 @@ class PDF(FPDF):        # create a class PDF which inherits from FPDF
         self.set_font('helvetica', '', 10)
         self.cell(58, 5, 'Bankverbindung', 'B', ln=True)
         self.ln(2)
-        self.cell(58, 4.5, 'IBAN: ', ln=True)
-        self.cell(58, 4.5, 'BIC: ', ln=True)
+        self.cell(58, 4.5, f'IBAN: {load_default_company.iban} ', ln=True)
+        self.cell(58, 4.5, f'BIC: {load_default_company.bic}', ln=True)
         self.ln(10)
         
         self.set_font('helvetica', 'B', 10)
@@ -126,15 +126,9 @@ class PDF(FPDF):        # create a class PDF which inherits from FPDF
         self.cell(10, 3.5, load_default_company.name, ln=True)  # add a cell with a company address, name and street
         self.cell(10, 3.5, load_default_company.street, ln=True)  # add a cell with a company address, name and street
         self.cell(10, 3.5, load_default_company.city, ln=True)  # add a cell with a company address, name and street
+        self.cell(10, 3.5, f'Datum: {date.today()}', ln=True)  # add a cell with the current date
 
     
-
-
-
-
-            
-
-
 
 #create FPDF object
 pdf = PDF('P','mm', 'A4')  # P = Portrait, mm = millimeter, A4 = size of the page
