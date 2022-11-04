@@ -1,13 +1,12 @@
 def pdf_creator(): 
-    #https://www.youtube.com/watch?v=q70xzDG6nls
     from fpdf import FPDF   # import FPDF module from fpdf library
-    from user_input import load_default_company, recipient_company, table_script
+    from pdf_connector import load_default_company, recipient_company, table_script
     from datetime import date
 
 
-    load_default_company()  # load default company data
-    recipient_company()     # load recipient company data
 
+    load_default_company()  # load default company data 
+    recipient_company()     # set recipient data
 
     class PDF(FPDF):        # create a class PDF which inherits from FPDF
         def header(self):   # create a method header
@@ -97,5 +96,3 @@ def pdf_creator():
 
     # save the pdf with name .pdf
     pdf.output(f'{date.today()}{recipient_company.company_name}.pdf', 'F')  # F = save the file in the current directory
-
-    today = date.today()

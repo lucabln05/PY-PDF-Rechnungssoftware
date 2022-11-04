@@ -1,9 +1,12 @@
+from database_connector import *    # get recipient data from database
+
+
 def load_default_company():
     default_config = open("Config/default_company.txt", "r")
     default_config = default_config.read()
     default_name, default_street, default_city, default_iban, default_bic = default_config.splitlines()
 
-
+    
     load_default_company.name = default_name        
 
     load_default_company.street = default_street
@@ -17,19 +20,23 @@ def load_default_company():
 
 
 
-
 # recipient company data
 def recipient_company():
-    recipient_company.company_name = "Translotico GmbH"
 
-    recipient_company.name = "Frau Bergmann"
+    pdf_input_get()
 
-    recipient_company.street = "Hauptstrasse 1"
+    recipient_company.company_name = pdf_input_get.company_name
 
-    recipient_company.city = "82377 Murnau"
+    recipient_company.name = pdf_input_get.name
+
+    recipient_company.street = pdf_input_get.street
+
+    recipient_company.city = pdf_input_get.city
 
 
 
+
+# create the table in the pdf
 def table_script(self):
         row_number = int(input("Wie viele Artikel?: "))  
         gesamt_preis = 0   
@@ -69,5 +76,7 @@ def table_script(self):
         self.cell(58, 3.5, '')
         self.cell(58, 3.5, '')
         self.cell(58, 3.5, 'Gesamtsumme', 'B')
-        self.cell(15, 3.5, f'{round(gesamt_preis, 2) + round(betrag_mwst, 2)}', 'B')
+        self.cell(15, 3.5, f'{round(round(gesamt_preis, 2) + round(betrag_mwst, 2))}', 'B')
         self.ln(30)
+
+
