@@ -1,6 +1,6 @@
-from pdf_create_script import pdf_creator
-from database_connector import *
-from win_main import main_window as main_gui
+from pdf_create_script import *
+from Connectors.database_connector import *
+from GUI.win_main import main_window as main_gui
 
 
 def menu():

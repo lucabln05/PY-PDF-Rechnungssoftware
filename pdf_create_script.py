@@ -1,6 +1,6 @@
 def pdf_creator(): 
     from fpdf import FPDF   # import FPDF module from fpdf library
-    from pdf_connector import load_default_company, recipient_company, table_script
+    from Connectors.pdf_connector import load_default_company, recipient_company, table_script
     from datetime import date
 
 
@@ -10,7 +10,7 @@ def pdf_creator():
 
     class PDF(FPDF):        # create a class PDF which inherits from FPDF
         def header(self):   # create a method header
-            self.image('logo.png', 10, 5, 21)    # add an image to the header
+            self.image('Config/logo.png', 10, 5, 21)    # add an image to the header
 
             self.set_font('helvetica', '', 21)     # set the font, style and size
             self.cell(80)   # create a cell

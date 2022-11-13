@@ -1,4 +1,4 @@
-from database_connector import *    # get recipient data from database
+from Connectors.database_connector import *    # get recipient data from database
 
 
 def load_default_company():
