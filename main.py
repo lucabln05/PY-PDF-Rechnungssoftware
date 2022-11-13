@@ -10,9 +10,15 @@ def menu():
     2. Delete Client
     3. Update Client
     4. Search Client
+
     5. Create PDF
     6. Start GUI
-    7. Exit  
+
+    7. add product
+    8. delete product 
+    9. update product   
+
+    10. Exit  
 
     by lucabln05
         ''')
@@ -35,7 +41,13 @@ def menu():
             elif user_input == 6:
                 main_gui()
             elif user_input == 7:
-                exit()
+                add_product()
+            elif user_input == 8:
+                delete_product()
+            elif user_input == 9:
+                update_product()
+            elif user_input == 10:
+                break
             else:
                 print("Please enter a valid number")
         except Exception as error:

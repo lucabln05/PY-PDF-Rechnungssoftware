@@ -41,10 +41,11 @@ def table_script(self):
         row_number = int(input("Wie viele Artikel?: "))  
         gesamt_preis = 0   
         for i in range(row_number):
+                pdf_input_get_products()
                 # tabellen spalten
-                artikel_name = input("Artikelname: ")
+                artikel_name = pdf_input_get_products.product_name
                 artikel_menge = int(input("Artikelmenge: "))
-                artikel_einzelpreis = float(input("Artikelpreis: "))
+                artikel_einzelpreis = float(pdf_input_get_products.product_price)
                 artikel_gesamtpreis = artikel_menge * artikel_einzelpreis
                 self.set_font('helvetica', '', 8)
                 self.set_text_color(80,80,80)
