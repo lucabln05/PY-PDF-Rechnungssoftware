@@ -5,19 +5,36 @@ def main_window():
 
 
     # get conntent from database and return it as a list
+   
     def View():
 
-        con1 = sqlite3.connect("Database/recipient.db")
+            con1 = sqlite3.connect("Database/recipient.db")
+
+            cur1 = con1.cursor()
+
+            cur1.execute("SELECT * FROM recipient")
+            rows = cur1.fetchall()    
+            for row in rows:
+
+                print(row) 
+
+                tree.insert("", tk.END, values=row)        
+
+            con1.close()
+
+    def View_products():
+
+        con1 = sqlite3.connect("Database/products.db")
 
         cur1 = con1.cursor()
 
-        cur1.execute("SELECT * FROM recipient")
+        cur1.execute("SELECT * FROM products")
         rows = cur1.fetchall()    
         for row in rows:
 
             print(row) 
 
-            tree.insert("", tk.END, values=row)        
+            tree2.insert("", tk.END, values=row)        
 
         con1.close()
 
@@ -45,6 +62,22 @@ def main_window():
 
     tree.pack()
     View()
+        
+    # add secound list that will display data from database products
+    tree2 = ttk.Treeview(root, column=("c1", "c2", "c3"), show='headings')
+
+    tree2.column("#1", anchor=tk.CENTER)
+    tree2.heading("#1", text="ID")
+
+    tree2.column("#2", anchor=tk.CENTER)
+    tree2.heading("#2", text="Product")
+
+    tree2.column("#3", anchor=tk.CENTER)
+    tree2.heading("#3", text="Price")
+
+    tree2.pack()
+    View_products()
+
 
     # delete a client with pressing it in the treeview
     def delete():

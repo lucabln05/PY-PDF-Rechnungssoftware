@@ -77,7 +77,7 @@ def table_script(self):
         self.cell(58, 3.5, '')
         self.cell(58, 3.5, '')
         self.cell(58, 3.5, 'Gesamtsumme', 'B')
-        self.cell(15, 3.5, f'{round(round(gesamt_preis, 2) + round(betrag_mwst, 2))}', 'B')
+        self.cell(15, 3.5, f'{round(round(gesamt_preis, 2) + round(betrag_mwst, 2), 2)}', 'B')
         self.ln(30)
 
 

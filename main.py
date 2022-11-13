@@ -5,6 +5,7 @@ from win_main import main_window as main_gui
 
 def menu():
     print('''
+    0. Show all commands
 
     1. Add Client
     2. Delete Client
@@ -28,7 +29,9 @@ def menu():
         try:
             # ask the user what he wants to do
             user_input = int(input("What do you want to do? "))
-            if user_input == 1:
+            if user_input == 0:
+                menu()
+            elif user_input == 1:
                 add_client()
             elif user_input == 2:
                 delete_client()
